@@ -3,11 +3,11 @@
 
 
 
-int main(){
+int main(int x, int y){
 
 
-int a;
-int b;
+int a = x;
+int b = y;
 int gcd; 
 
 printf("Enter the first number: ");
@@ -20,11 +20,12 @@ scanf("%d", &b);
         }
 
     else {
-        for (int i = 1; i < a && i <= b; i++){
+        for (int i = 1; i <= a && i <= b; i++){
             if (a%i == 0 && b%i == 0){
                 gcd = i;
                      }//if mod   
             }//for i
         } //else 
 printf("The greatest common denominator of %d and %d is %d\n", a, b, gcd);
+return gcd;
 }//main
