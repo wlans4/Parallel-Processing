@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 int gcd();
 
-
 void main() { 
-
 int a;
 int b;
 
