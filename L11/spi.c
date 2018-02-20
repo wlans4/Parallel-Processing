@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "mpi.h"
 
 int main(int argc, char **argv) {
 
@@ -35,12 +36,14 @@ int main(int argc, char **argv) {
     Ntotal++;
   }
 
-  double localpi = Ncircle/ (double) Ntotal;
-  float float worldpisum +=localpi;
-  MPI_Reduce(&localpi, &worldpisum, 1, MPI_FLOAT, 0, MPI_COMM_WORLD);
+ MPI_Reduce(&Ntotal, &Ncircle, rank, MPI_FLOAT, MPI_SUM,0, MPI_COMM_WORLD);
+  
+   if (rank % 100 == 0){
+         float pi = (float) Ncircle/(Ntotal*size);
+         printf("Pi is equal to:%f", pi);
+    }
 
-
-
+  
   MPI_Finalize();
   return 0;
 }
