@@ -16,8 +16,8 @@ int main(int argc, char **argv) {
     int N = 1;
     
     //need running tallies
-    long long int Ntotal;
-    long long int Ncircle;
+    long long int Ntotal = 0;
+    long long int Ncircle = 0;
 
     //seed random number generator
     double seed = 1.0;
@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
   
    if (rank % 100 == 0){
          float pi = (float) Ncircle/(Ntotal*size);
-         printf("Pi is equal to:%f", pi);
+         printf("\npi is equal to:%f\n", pi);
     }
 
   
