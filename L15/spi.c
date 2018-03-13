@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
   //need running tallies
   long long int Ntotal=0;
   long long int Ncircle=0;
-    #pragma omp parallel for reduction(+:Ncircle)
+    #pragma omp parallel for reduction(+:Ntotal)
   for (long long int n=0; n<Ntrials; n++) {
     double rand1;
     double rand2;
