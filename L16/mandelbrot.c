@@ -60,8 +60,8 @@ int testpoint(complex_t c){
 
 // perform Mandelbrot iteration on a grid of numbers in the complex plane
 // record the  iteration counts in the count array
-void  mandelbrot(static int Nre, int Nim, complex_t cmin, complex_t cmax, float *count){ 
-  int n,m;
+void  mandelbrot(int Nre, int Nim, complex_t cmin, complex_t cmax, float *count){ 
+  static int n,m;
 
  static complex_t c;
 
