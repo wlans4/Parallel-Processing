@@ -1,0 +1,5 @@
+F:
+    i: The program does not run faster with an increasing number of cores, but this could be because
+    I am competing against everyone in the class in trying to get cores off of newriver
+
+    ii:The program does not give the same result on each run
