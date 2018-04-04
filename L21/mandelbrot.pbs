@@ -1,22 +1,23 @@
 #! /bin/bash
 #
-#PBS -l walltime=00:10:00
-#PBS -l nodes=1:ppn=16
+#PBS -l walltime=00:20:00
+#PBS -l nodes=1:ppn=1:gpus=1
 #PBS -W group_list=newriver
-#PBS -q open_q
+#PBS -q p100_normal_q
 #PBS -j oe
+#PBS -A CMDA3634SP18
 
 #cd $PBS_O_WORKDIR
 
 #module purge
 #module load gcc cuda
 
-make
+/home/wlans4/Git/L21/makefile
 
 for ((Nthreads=1;Nthreads<=64;Nthreads+=4))
 do 
     echo Nthreads=$Nthreads
-    ./mandelbrot 4096 4096 $Nthreads;
+    /home/wlans4/Git/L21/mandelbrot 4096 4096 $Nthreads;
 done;
 
 
