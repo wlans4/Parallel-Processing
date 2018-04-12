@@ -1,0 +1,3 @@
+
+The file would not compile and run with the write_hot_png method included, 
+so I was not able to produce any pictures
