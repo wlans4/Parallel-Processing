@@ -95,31 +95,29 @@ int main(int argc, char **argv){
   
   printf("TEST\n");
   int Nre = atoi(argv[1]);
-printf("Test2\n");
   int Nim = atoi(argv[2]);
-printf("Test3\n");
   int Nthreads = atoi(argv[3]);
 
-printf("testblahg\n");
+
   
   // Q2b: set the number of threads per block and the number of blocks here: 
   
   
    float *d_a;
-printf("testblah2\n");
+
   //2D Block
   int NBlocksx = Nre;
   int NBlocksy = Nim;
   int NBlocksz = 1;
- printf("Test1.5\n"); 
+  
   //Num Blocks
   int NGridsx = 1;
   int NGridsy = 1;
   int NGridsz = 1;
- printf("Test1.75\n"); 
- printf("Test2\n"); 
+  
+  printf("Test2\n"); 
   cudaMalloc(&d_a, Nre*Nim*sizeof(float));
-  printf("Test3\n");
+  printf("Test3\n"); 
   dim3 B(NBlocksx, NBlocksy, NBlocksz); //2D threads
   dim3 G(NGridsx, NGridsy, NGridsz); //grid of threads
   
