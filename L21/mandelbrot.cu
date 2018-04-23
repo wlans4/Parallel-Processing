@@ -154,7 +154,7 @@ printf("testblah2\n");
   FILE *fp = fopen("mandelbrot.png", "w");
 
   printf("Printing mandelbrot.png...");
- // write_hot_png(fp, Nre, Nim, count, 0, 80);
+ write_hot_png(fp, Nre, Nim, count, 0, 80);
   printf("done.\n");
 
   free(count);
