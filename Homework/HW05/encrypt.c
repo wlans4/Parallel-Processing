@@ -34,7 +34,7 @@ int main (int argc, char **argv) {
 		printf("ERROR: public_key.txt does not exist\n");
 		return -1;
 	}  
-	fscanf(file, "%d %d %d %d", &n, &p, &g, &h);
+	fscanf(file, "%u\n %u\n %u\n %u\n", &n, &p, &g, &h);
 	printf("Reading in public key\n");
 	printf("n is %d\n", n);
 	printf("p is %d\n", p);	
@@ -45,6 +45,8 @@ int main (int argc, char **argv) {
 	printf("Done\n");
 	printf("length of message: %d\n", strlen(message));
 	printf("charsPerInt: %d\n", charsPerInt);	
+
+	padString(message, charsPerInt);
 	unsigned int Nchars = strlen(message);
 	unsigned int Nints = strlen(message)/charsPerInt;	
 	printf("Nints is %d\n", Nints);
@@ -53,7 +55,6 @@ int main (int argc, char **argv) {
 	unsigned int *Zmessage = (unsigned int*) malloc(Nints*sizeof(unsigned int));
 	unsigned int *a = (unsigned int*) malloc(Nints*sizeof(unsigned int));
 
-	padString(message, charsPerInt);
 
 	printf("Converting message to Integer...\n");
 	convertStringToZ(message, Nchars, Zmessage, Nints);

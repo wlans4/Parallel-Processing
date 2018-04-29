@@ -69,18 +69,18 @@ int main (int argc, char **argv) {
     and the cyphertexts from messages.txt. */
 
   //Read in from public_key.txt
-  FILE *file = fopen("bonus_public_key.txt", "r");
+  FILE *file = fopen("public_key.txt", "r");
   if (file == NULL){
-	printf("ERROR: bonus_public_key.txt does not exist\n");
+	printf("ERROR: public_key.txt does not exist\n");
 	return -1;
   }
 
   fscanf(file, "%d %d %d %d", &n, &p, &g, &h);
   printf("Read in public_key.txt\n");
   fclose(file);
-  file = fopen("bonus_message.txt", "r");
+  file = fopen("message.txt", "r");
   if (file == NULL){
-	printf("ERROR: bonus_message.txt does not exist\n");
+	printf("ERROR: message.txt does not exist\n");
 	return -1;
   }
 
