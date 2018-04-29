@@ -42,7 +42,6 @@ int main (int argc, char **argv) {
 	printf("h is %d\n", h);
 	unsigned int charsPerInt = (n - 1)/8;
 	printf("Padding String with spaces...\n");
-	padString(message, charsPerInt);
 	printf("Done\n");
 	printf("length of message: %d\n", strlen(message));
 	printf("charsPerInt: %d\n", charsPerInt);	
@@ -54,7 +53,7 @@ int main (int argc, char **argv) {
 	unsigned int *Zmessage = (unsigned int*) malloc(Nints*sizeof(unsigned int));
 	unsigned int *a = (unsigned int*) malloc(Nints*sizeof(unsigned int));
 
-
+	padString(message, charsPerInt);
 
 	printf("Converting message to Integer...\n");
 	convertStringToZ(message, Nchars, Zmessage, Nints);

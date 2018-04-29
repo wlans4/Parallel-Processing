@@ -12,7 +12,8 @@ int main (int argc, char **argv) {
   //declare storage for an ElGamal cryptosytem
   unsigned int n, p, g, h, x;
   unsigned int Nints;
-
+  unsigned int Nchars;
+  
   //get the secret key from the user
   printf("Enter the secret key (0 if unknown): "); fflush(stdout);
   char stat = scanf("%u",&x);
@@ -23,32 +24,34 @@ int main (int argc, char **argv) {
     and the cyphertexts from messages.txt. */
 
   //Read in from public_key.txt
-  FILE *file = fopen("public_key.txt", "r");
+  FILE *file = fopen("bonus_public_key.txt", "r");
   if (file == NULL){
-	printf("ERROR: public_key.txt does not exist\n");
+	printf("ERROR: bonus_public_key.txt does not exist\n");
 	return -1;
   }
 
   fscanf(file, "%d %d %d %d", &n, &p, &g, &h);
-  printf("Read in public_key.txt\n");
+  printf("Read in bonus_public_key.txt\n");
 
-  file = fopen("message.txt", "r");
+  file = fopen("bonus_message.txt", "r");
   if (file == NULL){
-	printf("ERROR: message.txt does not exist\n");
+	printf("ERROR: bonus_message.txt does not exist\n");
 	return -1;
   }
 
-  fscanf(file, "%d", &Nints);
-  unsigned int* ints = (unsigned int*) malloc(Nints*sizeof(unsigned int));
-  for (int i = 0; i < Nints - 1; i++){
-	fscanf(file, "%u", (ints + i));
+  fscanf(file, "%u",&Nints);
+  unsigned int* Z = (unsigned int*) malloc(Nints*sizeof(unsigned int));
+  unsigned int* a = (unsigned int*) malloc(Nints*sizeof(unsigned int));
+  for (int i = 0; i < Nints; i++){
+	fscanf(file, "%u %u\n", &Z[i], &a[i]);
   }
+  Nchars = Nints*(n-1)/8;
+	fclose(file);
   printf("Read in cyphertexts from messages.txt\n");
-
+  double startTime = clock();
   // find the secret key
   if (x==0 || modExp(g,x,p)!=h) {
     printf("Finding the secret key...\n");
-    double startTime = clock();
     for (unsigned int i=0;i<p-1;i++) {
       if (modExp(g,i+1,p)==h) {
         printf("Secret key found! x = %u \n", i+1);
@@ -61,10 +64,18 @@ int main (int argc, char **argv) {
     double work = (double) p;
     double throughput = work/totalTime;
 
+	
     printf("Searching all keys took %g seconds, throughput was %g values tested per second.\n", totalTime, throughput);
   }
 
-  /* Q3 After finding the secret key, decrypt the message */
 
-  return 0;
+printf("The decrypted message is:\n");
+        unsigned char* message = (unsigned char*) malloc(100*sizeof(unsigned char));
+        ElGamalDecrypt(Z, a, Nints, p, x);
+        convertZToString(Z, Nints, message, Nchars);
+        printf("\"%s\"\n", message);
+        printf("\n");
+	
+return 0;
+
 }
