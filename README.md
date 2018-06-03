@@ -1,3 +1,3 @@
 # CMDA3634
 
-#This is a readme
+Course repo for the upload of class projects and lecture files
